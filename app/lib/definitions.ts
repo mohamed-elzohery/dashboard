@@ -93,3 +93,10 @@ export interface HasSearchParams {
     page?: string;
   };
 }
+
+export interface HasID {
+  id: string;
+}
+export interface HasParams<T> {
+  params: T;
+}
