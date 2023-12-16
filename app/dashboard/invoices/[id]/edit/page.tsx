@@ -2,6 +2,7 @@ import Form from '@/app/ui/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchCustomers, fetchInvoiceById } from '@/app/lib/data';
 import { HasID, HasParams } from '@/app/lib/definitions';
+import { notFound } from 'next/navigation';
 
 const Page: React.FC<HasParams<HasID>> = async ({ params: { id } }) => {
   const customersPromise = fetchCustomers();
@@ -10,6 +11,8 @@ const Page: React.FC<HasParams<HasID>> = async ({ params: { id } }) => {
     customersPromise,
     invoicePromise,
   ]);
+
+  if (!invoice) notFound();
   return (
     <main>
       <Breadcrumbs
